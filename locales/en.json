@@ -1,0 +1,32 @@
+{
+	"Home": {
+		"Title": "Chateg.com - Find new friends from your country easily and free!",
+		"Description": "Find new friends from your country without registeration! Chat with them easily and have fun.",
+		"Keywords": "chat, random chat, find new friends, find new friends from your country, meet strangers from your country",
+		"Introduction": "Find New Friends!",
+		"SubIntroduction": "Chat with nice people in real time.",
+		"EnterChat": "Enter Chat",
+		"OnlineUsers": "Online users: ",
+		"All": "all: "
+	},
+	"Login": {
+		"Title": "Chateg.com - Login and start chatting!",
+		"Description": "Login start meeting awesome people from your country.",
+		"Keywords": "start chatting, login",
+		"Sex": "Who are you?",
+		"Partner": "Who do you want to talk to?",
+		"Country": "Where are you from?",
+		"EnterChat": "Enter chat"
+	},
+	"Chat": {
+		"Title": "Chateg.com - Have nice talk wit a stranger!",
+		"Description": "Find new friends from your country.",
+		"Keywords": "meet a stanger from your country, talk to people from your country, find new friends from your country",
+		"YouAreConnected": "You are connected with a stranger",
+		"PartnerNotFound": "No users found at the moment from your country. Please try again later.",
+		"SearchAgain": "Search again",
+		"YouAreDisconnected": "You are disconnected",
+		"ConnectToAnotherStranger": "Connect to another stranger",
+		"TypeMessage": "Type a message . . ."
+	}
+}

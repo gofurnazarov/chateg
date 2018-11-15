@@ -1,0 +1,21 @@
+// Bootstrap overided variables
+$font-family-sans-serif: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$primary: #da404a;
+$btn-border-radius:  30px;
+$btn-padding-y: 1rem;
+$btn-padding-x: 2.5rem;
+
+// Variables
+
+// Plugins
+@import "~bootstrap/scss/bootstrap";
+@import 'pretty-checkbox/dist/pretty-checkbox.min.css';
+@import 'vue-flash-message/dist/vue-flash-message.min.css';
+
+// Views
+@import "views/index.scss";
+@import "views/login.scss";
+@import "views/chat.scss";
+
+// Components
+@import "components/Header.scss";

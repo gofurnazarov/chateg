@@ -1,0 +1,38 @@
+.header {
+	background-color: $primary;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 60px;
+	position: relative;
+	z-index: 1;
+}
+
+.header-small {
+	height: 50px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	
+	.logo-image {
+		width: 25px;
+	}
+
+	.logo-text {
+		font-size: 24px;
+	}
+}
+
+.logo-link {
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+
+.logo-text {
+	color: white;
+	font-size: 27px;
+	font-family: "Fredoka One";
+}

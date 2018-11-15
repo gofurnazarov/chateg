@@ -1,0 +1,12 @@
+head () {
+		return {
+			title: this.$t('Home.Title'),
+			meta: [
+				{ rel:'alternate', hreflang:'ru', href:'http://localhost:1010/ru' },
+				{ rel:'alternate', hreflang:'uz', href:'http://localhost:1010/uz' },
+				{ rel:'alternate', hreflang:'x-default', href:'http://localhost:1010' },
+				{ hid: 'description', name: 'description', content: this.$t('Home.Description') },
+				{ hid: 'keywords', name: 'keywords', content: this.$t('Home.Keywords') }
+			],
+		}
+	},

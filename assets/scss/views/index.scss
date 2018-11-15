@@ -1,0 +1,103 @@
+.home-page-content {
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+}
+
+.vue-flux {
+	position: absolute !important;
+	top: 0;
+	left: 0;
+	min-height: 100%;
+	width: 100%;
+	z-index: 1;
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		min-height: 100%;
+		width: 100%;
+		background-image: linear-gradient(130deg, #6f156c, #232020, #fd7c00);
+		opacity: .65; 
+		z-index: 13;
+	}
+}
+
+.text-group {
+	color: white;
+	max-width: 800px;
+	margin: 0 auto;
+	position: relative;
+	text-align: center;
+	padding: 0 15px;
+	z-index: 2;
+
+	h1 {
+		font-weight: bold;
+		font-size: 60px;
+		padding-top: 35px;
+		margin-bottom: 20px;
+
+		@include media-breakpoint-down(sm) {
+			font-size: 32px;
+		}
+	}
+
+	h4 {
+		font-size: 22px;
+		line-height: 27px;
+		font-weight: lighter;
+		margin-bottom: 60px;
+
+		@include media-breakpoint-down(sm) {
+			text-align: justify;
+			text-align-last: center;
+		}
+	}
+
+	.btn-primary {
+		font-weight: bold;
+		margin-bottom: 60px;
+		text-transform: uppercase;
+	}
+
+	span {
+		display: inline-block;
+		line-height: 18px;
+		margin-bottom: 30px;
+	}
+	
+}
+
+.languages {
+	color: $black;
+	background-color: transparentize($white, 0.6);
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	padding: 5px 15px;
+	text-align: center;
+	width: 100%;
+	z-index: 2;
+}
+	.language {
+		color: $black;
+		
+		&:after {
+			content: ' | '
+		}
+
+		&:last-child:after {
+			content: ''
+		}
+		
+		&:hover {
+			color: $black;
+		}
+
+		&.active {
+			color: lighten($black, 25);
+		}
+	}

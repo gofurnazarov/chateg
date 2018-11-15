@@ -1,0 +1,32 @@
+{
+	"Home": {
+		"Title": "Chateg.com - O'z mamlakatingizdan yangi do'stlar toping!",
+		"Description": "Ro'yxatdan o'tmasdan o'z mamlakatingizdan yangi do'stlar toping va ular bilan ajoyib suhbat quring!",
+		"Keywords": "tanishuv, tanishuv sayti, tanishuv portali, tanishuvlar portali, chat, yangi do'stlar toping",
+		"Introduction": "Yangi do'stlar toping!",
+		"SubIntroduction": "Ajoyib insonlar bilan real vaqtda suhbatlashing.",
+		"EnterChat": "Chatga kirish",
+		"OnlineUsers": "Onlayn foydalanuvchilar: ",
+		"All": "Barchasi: "
+	},
+	"Login": {
+		"Title": "Chateg.com - Chatga kiring va suhbatlashishni boshlang!",
+		"Description": "Tanishuvlar portaliga kiring va suhbatlashishni boshlang!",
+		"Keywords": "suhbatlashishni boshlang, chat, chatga kirish, tanishuvlar portaliga kirish",
+		"Sex": "Kimsiz?",
+		"Partner": "Kim bilan suhbatlashishni xohlaysiz?",
+		"Country": "Qayerdansiz?",
+		"EnterChat": "Chatga kirish"
+	},
+	"Chat": {
+		"Title": "Chateg.com - Tasodifiy suhbatdoshingiz bilan ajoyib suhbat quring!",
+		"Description": "O'z mamlakatingizdan yangi do'stlar toping!",
+		"Keywords": "tanishuv, yangi do'stlar toping, tanishuvlar portalida yangi do'stlar orttiring",
+		"YouAreConnected": "Siz suhbatdashingiz bilan bog'landingiz!",
+		"PartnerNotFound": "Suhbatdosh topilmadi. Keyinroq qayta urinib ko'ring!",
+		"SearchAgain": "Qayta urinib ko'rish",
+		"YouAreDisconnected": "Aloqa uzildi",
+		"ConnectToAnotherStranger": "Boshqa suhbatdosh qidirish",
+		"TypeMessage": "Xabar yozing . . ."
+	}
+}

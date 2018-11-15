@@ -1,0 +1,90 @@
+.login-form {
+	background-color: $white;
+	border: 1px solid $gray-300;
+	border-radius: 5px;
+	margin: 30px 0;
+	padding: 15px 100px;
+
+	@include media-breakpoint-down(sm) {
+		padding: 20px;
+	}
+}
+
+// Pretty checkbox vue override
+.pretty-with-image .pretty .state label:after, .pretty .state label:before {
+	top: calc(50% - 1em + 6px) !important;
+}
+
+// Vue-select override
+
+.form-group .v-select {
+	&.has-error {
+		.dropdown-toggle {
+			border-color: $danger;
+			animation: shake 0.5s;
+
+			@keyframes shake {
+				0% {
+					left: -20px;
+					transform: rotate(3deg)
+				}
+				25% {
+					left: 20px;
+					transform: rotate(-3deg)
+				}
+				50% {
+					left: -10px;
+					transform: rotate(1deg)
+				}
+				75% {
+					left: 10px;
+					transform: rotate(-1deg)
+				}
+			}
+		}
+	}
+
+	.dropdown-toggle {
+		position: relative;
+		border-radius: 3px;
+		padding: 0;
+	
+		&:after {
+			display: none;
+		}
+	}
+	
+	input[type=search], 
+	input[type=search]:focus {
+		margin: 0;
+	}
+
+}
+
+
+ul.dropdown-menu {
+	width: 100%;
+	
+	li {
+		display: block;
+		border-bottom: 1px solid $gray-300;
+
+		&.highlight {
+			a {
+				background: $gray-500 !important;
+			}
+		}
+
+		a {
+			white-space: initial !important;
+			line-height: 15px;
+			padding-top: 7px !important;
+			padding-bottom: 7px !important;
+		}
+	}
+}
+
+// Google captcha override
+.google-captcha > div > div {
+	margin: 0 auto;
+}
