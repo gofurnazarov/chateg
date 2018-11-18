@@ -4,23 +4,40 @@ export default function ({ isHMR, app, store, route, params, error, redirect }) 
 		return
 	}
 
-	switch (route.fullPath) {
-		case '/':
-			if (store.state.locale != 'en') {
-				store.commit('setLanguage', 'en')
-				app.i18n.locale = store.state.locale
-			}	
-			break;
-		case '/ru':
+	if (store.state.locale && route.fullPath == '/') 
+	{
+		const locale = store.state.locale;
+		
+		if(locale == 'ru') {
+			return redirect('/ru')
+		} else if (locale == 'uz') {
+			return redirect('/uz')
+		} 
+	} 
+	else 
+	{
+		switch (route.fullPath) {
+			case '/':
+				if (store.state.locale != 'en') {
+					store.commit('setLanguage', 'en')
+					app.i18n.locale = store.state.locale
+				}	
+				break;
+			case '/ru':
 				store.commit('setLanguage', 'ru')
 				app.i18n.locale = store.state.locale
-			break;
-		case '/uz':
+				break;
+			case '/uz':
 				store.commit('setLanguage', 'uz')
 				app.i18n.locale = store.state.locale
-				console.log(route.fullPath == '/uz')
-			break;
+				break;
+			case '/en': 
+				store.commit('setLanguage', 'en')
+				app.i18n.locale = store.state.locale
+				return redirect('/')
+		}
 	}
+
 	
 	if (params.lang) {
 		const locale = params.lang;
@@ -37,5 +54,5 @@ export default function ({ isHMR, app, store, route, params, error, redirect }) 
 		} else {
 			return error({ message: 'This page could not be found.', statusCode: 404 })
 		}
-	} 	
+	}
 } 

@@ -80,7 +80,7 @@
 						<v-form-group
 							:label-text="$t('Login.Country')"
 						>
-							<no-ssr placeholder="Loading...">
+							<no-ssr>
 								<vue-select
 									:class="['mb-5', {'has-error': countryEmpty}]"
 									v-model="user.country"
@@ -88,19 +88,17 @@
 									max-height="200px"
 									:clearable="false"
 								/>
+								<template slot="placeholder">
+									<small class="d-block text-center mb-2">Loading . . .</small>
+								</template>
 							</no-ssr>
 						</v-form-group>
 						
 						<div class="form-group">
-							<small class="d-block text-center">
-								By entering chat you are agree to 
-								<a 
-									href="/chat-rules"
-									target="_blank"
-								>
-									our rules
-								</a>
-							</small>
+							<small 
+								class="d-block text-center"
+								v-html="$t('Login.Rules')"
+							/>
 						</div>
 
 						<div class="form-group google-captcha">
@@ -195,13 +193,22 @@ export default {
 		let countries = await this.$axios.$get(`https://restcountries.eu/rest/v2/all`)
 
 		try {
-			countries.forEach(element => {
-				this.countries.push({ label: element.nativeName, value: element.alpha2Code });
-			});
+			if(countries) {
+				countries.forEach(element => {
+					this.countries.push({ label: element.nativeName, value: element.alpha2Code });
+				});
+			}
 		} catch(e) {
 			console.log(e)
 		}
+
+		let result = await this.$axios.$get('http://ip-api.com/json');
+		let countryId = result.countryCode;
+		let result1 = await this.$axios.$get(`https://restcountries.eu/rest/v2/alpha/${countryId}`);
+		let nativeName = result1.nativeName;
+		this.user.country = { label: nativeName, value: countryId };
 	},
+
 
 	watch: {
 		'user.sex'(newVal, oldVal) {

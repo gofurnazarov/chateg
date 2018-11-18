@@ -32,7 +32,7 @@ export default {
 			const itemClass = Vue.extend(VNotice)
 			const itemInstance = new itemClass({
 					propsData: { 
-						type: 'success',
+						type: 'alert-success',
 						content: this.$t('Chat.YouAreConnected')
 					}
 			})
@@ -107,7 +107,7 @@ export default {
 					propsData: { 
 						store: store,
 						socket: socket,
-						alertType: 'error',
+						alertType: 'alert-danger',
 						alertText: this.$t('Chat.PartnerNotFound'),
 						btnText: this.$t('Chat.SearchAgain'),
 						sperator: false
@@ -123,7 +123,7 @@ export default {
 					propsData: { 
 						store: store,
 						socket: socket,
-						alertType: 'error',
+						alertType: 'alert-danger',
 						alertText: this.$t('Chat.YouAreDisconnected'),
 						btnText: this.$t('Chat.ConnectToAnotherStranger'),
 						sperator: true

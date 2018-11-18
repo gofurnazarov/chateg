@@ -5,7 +5,7 @@
 		</div>
 		<div class="col p-0">
 			<div class="home-page-content">
-				<no-ssr placeholder="Loading...">
+				<no-ssr>
 					<vue-flux
 						:options="fluxOptions"
 						:images="fluxImages"
@@ -19,7 +19,7 @@
 					<h4>{{ $t('Home.SubIntroduction') }}</h4>
 
 					<nuxt-link 
-						to="login" 
+						:to="loginLink" 
 						class="btn btn-primary"
 					>
 						{{ $t('Home.EnterChat') }}
@@ -35,7 +35,7 @@
 				</div>
 				<div class="languages">
 					<nuxt-link
-						to="/" 
+						to="/en" 
 						class="language"
 					>English</nuxt-link>
 					<nuxt-link
@@ -54,6 +54,7 @@
 
 <script>
 import VHeader from '~/components/VHeader'
+import VLoading from '~/components/VLoading'
 
 export default {
 	name: 'Home',
@@ -96,6 +97,18 @@ export default {
 		}
 	},
 
+	computed: {
+		loginLink() {
+			const locale = this.$store.state.locale;
+
+			if(locale != 'en') {
+				return locale + '/login'
+			} else {
+				return 'login'
+			}
+		}
+	},
+
 	methods: {
 		async getUserCountryId() {
 			let result = await this.$axios.get('http://ip-api.com/json');
@@ -131,9 +144,10 @@ export default {
 	beforeMount() {
 		this.fluxTransitions.transitionBook = this.$fluxTransitions.transitionFade;
 	},
-
+	
 	components: {
-		VHeader
+		VHeader,
+		VLoading
 	}
 };
 </script>

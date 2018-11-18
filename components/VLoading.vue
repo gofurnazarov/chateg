@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import ThreeDots from 'vue-loading-spinner/src/components/ThreeDots'
+import ThreeDots from 'vue-loading-spinner/src/components/ThreeDots.vue'
 
 export default {
 	components: {

@@ -8,14 +8,31 @@ $btn-padding-x: 2.5rem;
 // Variables
 
 // Plugins
-@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/alert";
 @import 'pretty-checkbox/dist/pretty-checkbox.min.css';
-@import 'vue-flash-message/dist/vue-flash-message.min.css';
 
-// Views
-@import "views/index.scss";
-@import "views/login.scss";
-@import "views/chat.scss";
+// Utility
+@import "utility/animations.scss";
+@import "utility/custom-reset.scss";
+
+// Pages
+@import "pages/Home.scss";
+@import "pages/Login.scss";
+@import "pages/Chat.scss";
 
 // Components
-@import "components/Header.scss";
+@import "components/VChatContent.scss";
+@import "components/VChatFooter.scss";
+@import "components/VChatHeader.scss";
+@import "components/VHeader.scss";
+@import "components/VMessage.scss";
+@import "components/VNotice.scss";

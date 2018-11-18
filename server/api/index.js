@@ -12,7 +12,6 @@ router.post('/login', function (req, res) {
 
 	if (req.body.user) {
 		user = req.body.user;
-		console.log(user)
 	}
 
 	if (!user.sex || !user.partner || !user.country || !user.token) {

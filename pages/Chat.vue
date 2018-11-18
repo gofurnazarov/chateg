@@ -29,7 +29,6 @@ import VHeader from '~/components/VHeader'
 import VChatHeader from '~/components/chat/VChatHeader'
 import VChatContent from '~/components/chat/VChatContent'
 import VChatFooter from '~/components/chat/VChatFooter'
-import socket from '~/plugins/socket.io.js'
 
 export default {
 	name: 'Chat',
@@ -47,6 +46,8 @@ export default {
 			}
 	},
 
+	middleware: 'authenticated',
+
 	data() {
 		return {
 			disconnectButton: true,
@@ -57,67 +58,68 @@ export default {
 
 	methods: {
 		sendMessage(message) {
-			const id = this.$store.getters.getPartnerId;
+			const id = this.$store.state.partnerId;
 			const sex = this.$store.getters.getUser.sex;
 
 			this.$refs.chatContent.onSendMessage({ message, sex });
-			socket.emit('send-message', { id, message, sex });
+			this.$socket.emit('send-message', { id, message, sex });
 		},
 		disconnectPartner() {
-			this.$refs.chatContent.onDisconnect(socket);
-			this.$refs.chatFooter.changeButtonsStatus(true);
-			socket.emit('disconnect-partner', this.$store.getters.getPartnerId)
+			this.$refs.chatContent.onDisconnect(this.$socket);
+			this.$refs.chatFooter.disableButtons();
+			this.$socket.emit('disconnect-partner', this.$store.state.partnerId)
 			this.$store.commit('removePartner')
 		},
 		onStartTyping() {
-			const id = this.$store.getters.getPartnerId;
+			const id = this.$store.state.partnerId;
 			const sex = this.$store.getters.getUser.sex;
-
-			socket.emit('user-started-typing', { id, sex })
+			this.$socket.emit('user-started-typing', { id, sex })
 		},
 		onStoptTyping() {
-			const id = this.$store.getters.getPartnerId;
+			const id = this.$store.state.partnerId;
 
-			socket.emit('user-stopped-typing', id)
+			this.$socket.emit('user-stopped-typing', id)
 		}
 	},
 
 	mounted() {
-		socket.connect()
+		const user = this.$store.getters.getUser;
 
-		socket.emit('enter-chat', this.$store.getters.getUser)
+		this.$socket.connect()
 
-		socket.on('searching-partner', (id) => {
+		this.$socket.emit('enter-chat', user)
+
+		this.$socket.on('searching-partner', (id) => {
 			this.$refs.chatContent.onSearchingPartner();
 		})
 
-		socket.on('partner-found', (id) => {
+		this.$socket.on('partner-found', (id) => {
 			this.$refs.chatContent.onPartnerFound();
-			this.$refs.chatFooter.changeButtonsStatus(false);
+			this.$refs.chatFooter.enableButtons();
 			this.$store.commit('setPartnerId', id)
 		})
 
-		socket.on('partner-zero', () => {
-			this.$refs.chatContent.onPartnerZero(socket);
-			this.$refs.chatFooter.changeButtonsStatus(true);
+		this.$socket.on('partner-zero', () => {
+			this.$refs.chatContent.onPartnerZero(this.$socket);
+			this.$refs.chatFooter.disableButtons();
 		})
 		
-		socket.on('user-started-typing', (sex) => {
+		this.$socket.on('user-started-typing', (sex) => {
 			this.$refs.chatContent.showTypingIndicator(sex);			
 		})
 
-		socket.on('user-stopped-typing', () => {
+		this.$socket.on('user-stopped-typing', () => {
 			this.$refs.chatContent.hideTypingIndicator();			
 		})
 
-		socket.on('new-message', ({message, sex}) => {
+		this.$socket.on('new-message', ({message, sex}) => {
 			this.$refs.chatContent.removeTypingIndicator();			
 			this.$refs.chatContent.onNewMessage({message, sex});			
 		})
 
-		socket.on('partner-disconnected', () => {
-			this.$refs.chatContent.onDisconnect(socket);
-			this.$refs.chatFooter.changeButtonsStatus(true);
+		this.$socket.on('partner-disconnected', () => {
+			this.$refs.chatContent.onDisconnect(this.$socket);
+			this.$refs.chatFooter.disableButtons();
 			this.$store.commit('removePartner')			
 		})
 	},

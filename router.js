@@ -17,6 +17,7 @@ export function createRouter() {
 				path: '/',
 				component: Index,
 				alias: [
+					'/en',
 					'/ru',
 					'/uz'
 				]

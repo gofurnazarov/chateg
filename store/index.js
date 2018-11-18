@@ -1,56 +1,55 @@
 import Vuex from 'vuex'
 import axios from 'axios'
-
-if (process.server) {
-	var LS = {
-		getItem: function() {
-			return;
-		},
-		setItem: function () {
-			return;
-		},
-	}
-} else {
-	var LS = localStorage;
-}
+import JSCookie from 'js-cookie'
+import Cookie from 'cookie'
 
 const createStore = () => {
 	return new Vuex.Store({
 		state: {
 			locales: ['en', 'ru', 'uz'],
-			locale: LS.getItem('locale'),
-			user: LS.getItem('user'),
-			partnerId: LS.getItem('partnerid')
+			locale: JSCookie.get('locale'),
+			user: JSCookie.get('user'),
+			partnerId: JSCookie.get('partnerId')
 		},
-		
+
 		mutations: {
 			saveUser(state, user) {
-				let jsonData = JSON.stringify(user);
-				state.user = jsonData 
-				LS.setItem('user', jsonData);
+				state.user = user;
+				JSCookie.set('user', user, { expires: 7 })
 			},
 			setPartnerId(state, id) {
 				state.partnerId = id;
-				LS.setItem('partnerid', id);
+				JSCookie.set('partnerId', id)
 			},
 			removePartner(state) {
 				state.partnerId = null;
-				LS.setItem('partnerid', null);
+				JSCookie.remove('partnerId')
 			},
 			setLanguage(state, locale) {
-					state.locale = locale;
-					LS.setItem('locale', locale);
+				state.locale = locale;
+				JSCookie.set('locale', locale, { expires: 7 })
 			}
 		},
 		
 		actions: {
+			nuxtServerInit({ commit }, { req }) {
+				const theCookie = Cookie.parse(req.headers.cookie || '')
+				
+				if (theCookie.hasOwnProperty('user')) {
+					commit('saveUser', theCookie.user)
+				}
+
+				if (theCookie.hasOwnProperty('locale')) {
+					commit('setLanguage', theCookie.locale)
+				}
+			},
 			saveUser(storeContext, user) {
-				axios.post('api/login', {
+				axios.post('http://localhost:1010/api/login', {
 					user: user
 				}).then((res) => {
 					if (res.data.success) {
 						storeContext.commit('saveUser', user)
-						this.$router.push({ name: 'chat' })
+						this.$router.push({ path: 'chat' })
 					}
 				}).catch((err) => {
 					console.log(err)
@@ -60,22 +59,37 @@ const createStore = () => {
 		
 		getters: {
 			getUser(state) {
-				if(state.user) {
-					return JSON.parse(state.user);
-				} else {
-					return null;
+				if (state.user) {
+					if(typeof(state.user) == 'object') {
+						return state.user;
+					} else {
+						return JSON.parse(state.user);
+					}
 				}
-			},
-			getPartnerId(state) {
-				return state.partnerId
+				
+				return state.user;
 			},
 			getCountryId(state) {
 				if (state.user) {
-					let countryId = JSON.parse(state.user).country.value
-					return countryId;
-				} else {
-					return false;
+					if (typeof(state.user) == 'object') {
+						return state.user.country.value;
+					} else {
+						return JSON.parse(state.user).country.value;
+					}
+				} 
+
+				return null;
+			},
+			getCountryNativeName(state) {
+				if (state.user) {
+					if (typeof(state.user) == 'object') {
+						return state.user.country.label;
+					} else {
+						return JSON.parse(state.user).country.label;
+					}
 				}
+
+				return null;
 			}
 		}
 	});

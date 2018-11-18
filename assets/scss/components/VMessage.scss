@@ -1,0 +1,53 @@
+.message {
+	display: flex;
+	align-items: flex-end;
+	
+	&.flex-row-reverse .message-text {
+		background-color: $info;
+		border-bottom-left-radius: 18px;
+		border-bottom-right-radius: 0;
+		color: $white;
+	}
+}
+
+.message-text {
+	background-color: $gray-300;
+	padding: 10px 15px;
+	border-radius: 18px;
+	border-bottom-left-radius: 0;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+
+	.circle {
+		animation: bounce 1.4s infinite ease-in-out both;
+		background-color: $gray-700;
+		border-radius: 100%;
+		display: inline-block;
+		height: 6px;
+		width: 6px;
+	}
+	
+	.circle-1 {
+		animation-delay: -0.32s;
+	}
+
+	.circle-2 {
+		margin: 0 3px;
+		animation-delay: -0.16s;
+	}
+
+	@keyframes bounce {
+		0%, 80%, 100% { 
+			transform: translateY(0);
+		} 
+		
+		40% { 
+			transform: translateY(-5px);
+		}
+	}
+}
+
+.messgae-icon {
+	display: inline-block;
+	min-width: 32px;
+}

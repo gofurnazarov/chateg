@@ -4,9 +4,6 @@ const insertIntoOnlineUsers = function (app, countryId, userData) {
 	} else {
 		app.locals.onlineUsers[countryId] = [userData];
 	}
-
-	console.log('connected')
-	console.log(app.locals.onlineUsers[countryId].length)
 }
 
 const removeFromOnlineUsers = function (app, countryId, id) {
@@ -16,8 +13,6 @@ const removeFromOnlineUsers = function (app, countryId, id) {
 				app.locals.onlineUsers[countryId].splice(index, 1);
 			}
 		})
-		console.log('disconnected')
-		console.log(app.locals.onlineUsers[countryId].length)
 	}
 }
 
@@ -44,12 +39,6 @@ const findRandomPartner = function(app, socket, countryId, id, partner) {
 
 	this.repeatTimes = 0;
 	this.startSearching = function() {
-		let userConnected = checkUserConnected(app, countryId, id);
-
-		if (userConnected) {
-			console.log('already connected')
-			return true;
-		}
 
 		let userPartners = app.locals.searchingUsers[countryId].filter(user => {
 			return partner.includes(user.sex) && user.id != id
@@ -62,8 +51,6 @@ const findRandomPartner = function(app, socket, countryId, id, partner) {
 			let randomPartnerIndex = parseInt(Math.random() * (userPartners.length -1));
 			let randomPartnerId = userPartners[randomPartnerIndex].id;
 			socket.partnerId = randomPartnerId;
-			console.log('ran:' + randomPartnerIndex)
-			console.log('leng:' + userPartners.length)
 
 			// Connect users
 			socket.emit('partner-found', randomPartnerId)
@@ -77,15 +64,24 @@ const findRandomPartner = function(app, socket, countryId, id, partner) {
 		}
 	}
 
+	
+	
 	const searching = setInterval(() => {
+		let userConnected = checkUserConnected(app, countryId, id);
+		if (userConnected) {
+			clearInterval(searching);
+
+			return false;
+		}
+		
 		this.repeatTimes += 1;
 		let result = this.startSearching();
-
+		
 		if (result) {
 			clearInterval(searching);
 		}
 		
-		if (!result && this.repeatTimes >= 3 ) {
+		if (this.repeatTimes >= 3 ) {
 			clearInterval(searching);
 			socket.emit('partner-zero')
 			removeFromSearchingUsers(app, countryId, id)
@@ -98,7 +94,6 @@ const checkUserConnected = function (app, countryId, id) {
 	for (const user of app.locals.searchingUsers[countryId]) {
 		if (user.id == id) {
 			return false;
-			break;
 		}
 	}
 	

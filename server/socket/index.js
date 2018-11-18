@@ -3,14 +3,13 @@ const actions = require('./actions');
 let start = function(io, app) {
 
 	io.on('connection', function (socket) {
-
+		
 		socket.on('enter-chat', function (user) {
 			let userData = user;
 			userData.id = socket.id;
 			socket.countryId = user.country.value;
 			
 			socket.emit('searching-partner');
-
 			actions.insertIntoOnlineUsers(app, socket.countryId, userData)
 			actions.insertIntoSearchingUsers(app, socket.countryId, userData)
 			actions.findRandomPartner(app, socket, socket.countryId, socket.id, user.partner)
@@ -21,7 +20,6 @@ let start = function(io, app) {
 					userData.id = socket.id;
 			
 			socket.emit('searching-partner');
-			
 			actions.insertIntoSearchingUsers(app, socket.countryId, userData)
 			actions.findRandomPartner(app, socket, socket.countryId, socket.id, user.partner)
 		})
@@ -36,7 +34,6 @@ let start = function(io, app) {
 
 		socket.on('send-message', function ({id, message, sex }) {
 			socket.broadcast.to(id).emit('new-message', { message, sex })
-			console.log(id)
 		})
 
 		socket.on('disconnect-partner', function(id) {
@@ -49,6 +46,7 @@ let start = function(io, app) {
 			actions.removeFromSearchingUsers(app, socket.countryId, socket.id)
 		});
 	})
+
 }
 
 module.exports = {

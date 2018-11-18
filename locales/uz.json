@@ -16,6 +16,7 @@
 		"Sex": "Kimsiz?",
 		"Partner": "Kim bilan suhbatlashishni xohlaysiz?",
 		"Country": "Qayerdansiz?",
+		"Rules": "Chatga kirish orqali <a href='/chat-rules' target='_blank'>qoidalarimizga</a> amal qilishga rozisiz.",
 		"EnterChat": "Chatga kirish"
 	},
 	"Chat": {

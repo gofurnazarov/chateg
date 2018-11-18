@@ -1,14 +1,10 @@
 <template>
-	<div class="flash text-center">
+	<div class="v-notice">
 		<div 
-			class="flash__message" 
+			class="alert"
 			:class="type"
-		>
-			<div 
-				class="flash__message-content" 
-				v-html="content"
-			/>
-		</div>
+			v-html="content"
+		/>
 	</div>
 </template>
 

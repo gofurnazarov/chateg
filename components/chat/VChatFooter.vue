@@ -57,8 +57,11 @@ export default {
 			this.$emit('disconnect')
 			this.$refs.textarea.innerText = '';
 		},
-		changeButtonsStatus(value) {
-			this.disabled = value;
+		disableButtons() {
+			this.disabled = true;
+		},
+		enableButtons() {
+			this.disabled = false;
 		},
 		startTyping() {
 			if(this.typing) {
@@ -76,7 +79,6 @@ export default {
 					this.$emit('stoptyping');
 				}, 5000)
 			}
-
 
 			this.typing = true;
 		}

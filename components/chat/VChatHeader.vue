@@ -1,7 +1,7 @@
 <template>
 	<div class="chat-header col-auto">
 		<div>
-			<b class="align-text-bottom">{{ countryId }} </b>
+			<span class="text-truncate">{{ countryNativeName }} </span>
 			<span class="badge badge-light ml-1"><img src="/boy-24.png"> {{ males }}</span>
 			<span class="badge badge-light ml-1"><img src="/girl-24.png"> {{ females }}</span>
 		</div>
@@ -18,12 +18,16 @@ export default {
 		}
 	},
 
+	computed: {
+		countryNativeName() {
+			return this.$store.getters.getCountryNativeName;
+		}
+	},
+
 	mounted() {
 		let countryId = this.$store.getters.getCountryId;
 
 		if(countryId) {
-			this.countryId = countryId + ': ';
-
 			this.$axios.get('api/get_males_and_females', {
 				params: {
 					countryId: countryId
@@ -47,7 +51,3 @@ export default {
 	},
 }
 </script>
-
-<style>
-
-</style>

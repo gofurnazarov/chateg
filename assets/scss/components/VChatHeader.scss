@@ -1,0 +1,24 @@
+.chat-header {
+	background-color: $gray-200;
+	padding: 5px;
+	text-align: center;
+
+	.badge {
+		font-size: 17px;
+		font-weight: lighter;
+
+		img {
+			vertical-align: bottom;
+		}
+	}
+
+	.text-truncate {
+		display: inline-block;
+		max-width: 150px;
+		vertical-align: bottom;
+		
+		&:after {
+			content: ':'
+		}
+	}
+}

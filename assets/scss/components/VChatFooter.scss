@@ -1,0 +1,99 @@
+.chat-footer {
+	background-color: $white;
+	border: 2px solid $gray-300;
+	border-bottom: 0;
+	padding: 7px 0;
+
+	.message-form {
+		border-radius: 4px;
+		display: flex;
+		align-items: flex-end;
+		width: 100%;
+	}
+
+	.btn {
+		background-color: transparent;
+		border-radius: 50%;
+		border: none;
+		padding: 21px;
+		margin: 0 3px;
+		position: relative;
+		overflow: hidden;
+		
+		&:hover,
+		&:focus {
+			background-color: $gray-200;
+		}
+
+		&:active {
+			background-color: $white !important;
+		}
+		
+		&:after {
+			background-repeat: no-repeat;
+			background-position: center;
+			content: '';
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+			height: 100%;
+			width: 100%;
+		}
+	}
+	
+	.btn-left {
+		&:after {
+			background-image: url('/close.png');
+			background-size: 17px;
+		}
+	}
+
+	[contenteditable=true]:empty:before {
+		content: attr(placeholder);
+		display: block; /* For Firefox */
+		opacity: 0.6;
+	}
+
+	.textarea {
+		background-color: $gray-200;
+		border-radius: 30px;
+		padding: 10px 13px;
+		max-height: 130px;
+		overflow-y: auto;
+		width: 100%;
+		word-break: break-all;
+		transition: background-color 0.4s;
+
+		&:focus  {
+			background-color: $gray-300;
+			outline: none;
+		}
+	}
+
+	.btn-right {
+		&:after {
+			background-image: url('/send.png');
+			background-size: 25px;
+		}
+	}
+
+	/* width */
+	::-webkit-scrollbar {
+		width: 17px;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+		background: transparent; 
+		margin: 10px 5px;
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: transparent; 
+		border-radius: 0;
+		border-left: 5px solid #888;
+	}
+
+}

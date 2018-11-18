@@ -1,6 +1,6 @@
 <template>
 	<div 
-		class="text-center"
+		class="text-center fade-in"
 	>
 		<hr 
 			v-if="sperator"

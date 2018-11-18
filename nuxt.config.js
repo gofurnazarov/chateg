@@ -15,7 +15,7 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: 'http://localhost:1010/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Fredoka+One|Montserrat:200,400,500,700,800&amp;subset=cyrillic' }
     ]
   },
@@ -23,7 +23,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#FFFFFF' },
+  loading: false,
 
   /*
   ** Global CSS
@@ -46,6 +46,8 @@ module.exports = {
     { src: '~/plugins/i18n.js', ssr: true },
     { src: '~/plugins/vue-select.js', ssr: false },
     { src: '~/plugins/vue-flux.js', ssr: false },
+    { src: '~plugins/ga.js', ssr: false },
+    { src: '~plugins/socket.io.js', ssr: false }
   ],
 
   /*
@@ -71,6 +73,9 @@ module.exports = {
       max: 10000,
       maxAge: 1000 * 60 * 60
     }],
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-129371850-1'
+    }]
   ],
 
   /*

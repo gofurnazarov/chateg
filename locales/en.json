@@ -16,10 +16,11 @@
 		"Sex": "Who are you?",
 		"Partner": "Who do you want to talk to?",
 		"Country": "Where are you from?",
+		"Rules": "By entering chat you are agree to follow <a href='/chat-rules' target='_blank'>our rules</a>",
 		"EnterChat": "Enter chat"
 	},
 	"Chat": {
-		"Title": "Chateg.com - Have nice talk wit a stranger!",
+		"Title": "Chateg.com - Have nice talk with a stranger!",
 		"Description": "Find new friends from your country.",
 		"Keywords": "meet a stanger from your country, talk to people from your country, find new friends from your country",
 		"YouAreConnected": "You are connected with a stranger",

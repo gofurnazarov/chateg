@@ -1,0 +1,7 @@
+.btn {
+	@include media-breakpoint-down(xs) {
+		font-size: 14px;
+		max-width: 90%;
+		padding: 10px 20px;
+	}
+}

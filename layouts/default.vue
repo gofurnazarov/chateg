@@ -11,7 +11,7 @@ export default {
   watch: {
     $route(newVal, oldVal) {
       if (oldVal.name == 'chat') {
-        socket.disconnect()
+        this.$socket.disconnect()
         console.log('disconnected')
       }
     }

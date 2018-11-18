@@ -1,4 +1,4 @@
+import Vue from 'vue'
 import io from 'socket.io-client'
-// const socket = io(process.env.WS_URL)
-const socket = io(process.env.BASE_URL)
-export default socket
+
+Vue.prototype.$socket = io(process.env.BASE_URL);
