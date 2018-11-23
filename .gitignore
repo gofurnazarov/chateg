@@ -12,3 +12,6 @@ dist
 
 # IDE
 .idea
+
+#PM 2
+ecosystem.config.js
