@@ -1,13 +1,6 @@
 import Vue from 'vue';
-import { VueFlux, Transitions } from 'vue-flux';
+import VueFlux from '~/vendor/vue-flux-master/src/components/VueFlux.vue';
+import transitionFade from '~/vendor/vue-flux-master/src/components/transitions/fade.vue';
 
 Vue.component('vue-flux', VueFlux);
-Vue.prototype.$fluxTransitions = Transitions;
-Vue.prototype.$socket = {
-	emit: function() {
-		return;
-	},
-	on: function () {
-		return;
-	}
-};
+Vue.prototype.$fluxTransitions = { transitionFade };

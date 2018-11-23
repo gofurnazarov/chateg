@@ -1,14 +1,21 @@
 const express = require('express')
 const router = express.Router()
 const request = require('request')
-const getPostData = require('../middleware/getPostData')
+// const getPostData = require('../middleware/getPostData')
 const help = require('../helper')
 
-router.use(getPostData)
-
-
-router.post('/login', function (req, res) {
-	let user = null;
+router.post('/login', function (req, res, next) {
+		var data = "";
+		req.on('data', function (chunk) { data += chunk })
+		req.on('end', function () {
+			if (data) {
+				req.body = JSON.parse(data);
+			}
+			next();
+		})
+	}, function (req, res) {
+	
+		let user = null;
 
 	if (req.body.user) {
 		user = req.body.user;
@@ -22,7 +29,7 @@ router.post('/login', function (req, res) {
 		uri: "https://www.google.com/recaptcha/api/siteverify",
 		json: true,
 		form: {
-			secret: '6Ld4RnQUAAAAAPdZaBbHdginQWteAohILLt1OXuT',
+			secret: '6LcUpnwUAAAAAL016jWDGKMABtgtA0JCo0Vkzd09',
 			response: user.token
 		}
 	}
@@ -34,7 +41,7 @@ router.post('/login', function (req, res) {
 
 		if (!body.success) {
 			return res.status(500).json({ message: body["error-codes"].join(".") });
-		}	
+		}
 
 		//Save the user to the database. At this point they have been verified.
 		res.status(201).json({ success: true, user: user });
@@ -61,11 +68,11 @@ router.get('/get_users_from_country', function (req, res) {
 	let numberOfOnlineUsers = 0;
 	let countryId = 'undefined';
 	let users = req.app.locals.onlineUsers;
-	
+
 	if (req.query.countryId) {
 		countryId = req.query.countryId;
 	}
-	
+
 	if (users.hasOwnProperty(countryId) && users[countryId].length > 0) {
 		numberOfOnlineUsers = help.countArray(users[countryId]);
 	}
@@ -85,15 +92,15 @@ router.get('/get_males_and_females', function (req, res) {
 
 	if (users.hasOwnProperty(countryId) && users[countryId].length > 0) {
 		users[countryId].forEach(item => {
-			if(item.sex == 'female') {
+			if (item.sex == 'female') {
 				females++;
-			} else if(item.sex == 'male') {
+			} else if (item.sex == 'male') {
 				males++;
 			}
 		})
 	}
 
-	res.status(201).json({ males: males, females: females})
+	res.status(201).json({ males: males, females: females })
 })
 
 module.exports = router

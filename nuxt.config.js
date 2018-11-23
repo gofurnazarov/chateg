@@ -4,6 +4,12 @@ const pkg = require('./package')
 
 module.exports = {
   mode: 'universal',
+  debug: true,
+  
+  env: {
+    baseUrl: process.env.BASE_URL,
+    node_env: process.env.NODE_ENV
+  },
 
   /*
   ** Headers of the page
@@ -15,7 +21,7 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: 'http://localhost:1010/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: 'http://chateg.com/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Fredoka+One|Montserrat:200,400,500,700,800&amp;subset=cyrillic' }
     ]
   },
@@ -53,14 +59,14 @@ module.exports = {
   /*
   ** Generate dynamic routes
   */
-  generate: {
-    routes: [
-      '/ru/login',
-      '/uz/login',
-      '/ru/chat',
-      '/uz/chat'
-    ]
-  },
+  // generate: {
+  //   routes: [
+  //     '/ru/login',
+  //     '/uz/login',
+  //     '/ru/chat',
+  //     '/uz/chat'
+  //   ]
+  // },
 
   /*
   ** Nuxt.js modules
@@ -75,29 +81,30 @@ module.exports = {
     }],
     ['@nuxtjs/google-analytics', {
       id: 'UA-129371850-1'
-    }]
+    }],
+    // '~/modules/express-routes.js'
   ],
 
   /*
   ** Generates sitemap
   */
-  sitemap: {
-    path: '/sitemap.xml',
-    hostname: 'https://example.com',
-    cacheTime: 1000 * 60 * 15,
-    gzip: true,
-    generate: false, // Enable me when using nuxt generate
-    exclude: [
-      '/secret',
-      '/admin/**'
-    ],
-    routes: [
-      '/ru/login',
-      '/uz/login',
-      '/ru/chat',
-      '/uz/chat'
-    ]
-  },
+  // sitemap: {
+  //   path: '/sitemap.xml',
+  //   hostname: 'http://chateg.com',
+  //   cacheTime: 1000 * 60 * 15,
+  //   gzip: true,
+  //   generate: false, // Enable me when using nuxt generate
+  //   exclude: [
+  //     '/secret',
+  //     '/admin/**'
+  //   ],
+  //   routes: [
+  //     '/ru/login',
+  //     '/uz/login',
+  //     '/ru/chat',
+  //     '/uz/chat'
+  //   ]
+  // },
 
   /*
   ** Axios module configuration
@@ -110,6 +117,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    // analyze: true,
     /*
     ** You can extend webpack config here
     */

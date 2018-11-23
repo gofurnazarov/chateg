@@ -1,7 +1,7 @@
 const countArray = function(arr) {
 	let len = 0;
 
-	if(arr.length > 0) {
+	if(arr) {
 		for (let index = 0; index < arr.length; index++) {
 			if (arr[index] !== undefined) {
 				len++;
