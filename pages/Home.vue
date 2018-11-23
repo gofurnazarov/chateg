@@ -63,9 +63,9 @@ export default {
 		return {
 			title: this.$t('Home.Title'),
 			meta: [
-				{ rel:'alternate', hreflang:'ru', href:'http://localhost:1010/ru' },
-				{ rel:'alternate', hreflang:'uz', href:'http://localhost:1010/uz' },
-				{ rel:'alternate', hreflang:'x-default', href:'http://localhost:1010' },
+				{ rel:'alternate', hreflang:'ru', href:'http://chateg.com:1010/ru' },
+				{ rel:'alternate', hreflang:'uz', href:'http://chateg.com:1010/uz' },
+				{ rel:'alternate', hreflang:'x-default', href:'http://chateg.com:1010' },
 				{ hid: 'description', name: 'description', content: this.$t('Home.Description') },
 				{ hid: 'keywords', name: 'keywords', content: this.$t('Home.Keywords') }
 			],
@@ -73,7 +73,7 @@ export default {
 	},
 	
 	async asyncData (context) {
-		let result = await context.app.$axios.get('api/get_users');
+		let result = await context.app.$axios.get('http://127.0.0.1:1001/api/get_users');
 
 		return {
 			onlineUsers: result.data.onlineUsers,
@@ -85,7 +85,7 @@ export default {
 			onlineUsers: 0,
 			onlineUsersFrom: 0,
 			countryId: null,
-			countryName: '- - -',
+			countryName: 'Loading ... ',
 			countryNativeName: null,
 			fluxOptions: {
         autoplay: true
@@ -111,22 +111,22 @@ export default {
 
 	methods: {
 		async getUserCountryId() {
-			let result = await this.$axios.get('http://ip-api.com/json');
-			return result.data.countryCode;
+			let result = await this.$axios.$get('http://ip-api.com/json');
+			return result.countryCode;
 		},
 		async countUsersFromCountry(countryId) {
-			let result = await this.$axios.get('api/get_users_from_country', {
+			let result = await this.$axios.$get('/api/get_users_from_country', {
 				params: {
 					countryId: countryId
 				}
 			});
 
-			this.onlineUsersFrom = result.data.onlineUsers;
+			this.onlineUsersFrom = result.onlineUsers;
 		},
 		async getCountryNativeName(id) {
-			let result = await this.$axios.get(`https://restcountries.eu/rest/v2/alpha/${id}`);
+			let result = await this.$axios.$get(`https://restcountries.eu/rest/v2/alpha/${id}`);
 
-			this.countryName = result.data.nativeName;
+			this.countryName = result.nativeName;
 		},
 		changeLanguage(lang) {
 			this.$store.commit('setLanguage', lang)
@@ -144,7 +144,7 @@ export default {
 	beforeMount() {
 		this.fluxTransitions.transitionBook = this.$fluxTransitions.transitionFade;
 	},
-	
+
 	components: {
 		VHeader,
 		VLoading

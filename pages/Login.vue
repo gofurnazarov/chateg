@@ -70,7 +70,7 @@
 							<vue-recaptcha 
 								ref="recaptcha"
 								type="invisible"
-								sitekey="6Ld4RnQUAAAAAHMYhe_oY-6GMnh6F7nbsevkqpRv"
+								sitekey="6LcUpnwUAAAAAAWoR_6rw-_ADVcjn1Q5mqe507At"
 								@verify="onVerify"
 								@expired="onExpired"
 							>
@@ -128,9 +128,9 @@ export default {
 		return {
 			title: this.$t('Login.Title'),
 			meta: [
-				{ rel:'alternate', hreflang:'ru', href:'http://localhost:1010/ru/login' },
-				{ rel:'alternate', hreflang:'uz', href:'http://localhost:1010/uz/login' },
-				{ rel:'alternate', hreflang:'x-default', href:'http://localhost:1010/login' },
+				{ rel:'alternate', hreflang:'ru', href:'http://chateg.com:1010/ru/login' },
+				{ rel:'alternate', hreflang:'uz', href:'http://chateg.com:1010/uz/login' },
+				{ rel:'alternate', hreflang:'x-default', href:'http://chateg.com:1010/login' },
 				{ hid: 'description', name: 'description', content: this.$t('Login.Description') },
 				{ hid: 'keywords', name: 'keywords', content: this.$t('Login.Keywords') }
 			],
@@ -189,7 +189,7 @@ export default {
 		}
 	},
 
-	async beforeCreate() {
+	async beforeMount() {
 		let countries = await this.$axios.$get(`https://restcountries.eu/rest/v2/all`)
 
 		try {

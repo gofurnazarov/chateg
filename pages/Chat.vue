@@ -37,9 +37,9 @@ export default {
 		return {
 				title: this.$t('Chat.Title'),
 				meta: [
-					{ rel:'alternate', hreflang:'ru', href:'http://localhost:1010/ru/chat' },
-					{ rel:'alternate', hreflang:'uz', href:'http://localhost:1010/uz/chat' },
-					{ rel:'alternate', hreflang:'x-default', href:'http://localhost:1010/chat' },
+					{ rel:'alternate', hreflang:'ru', href:'http://chateg.com:1010/ru/chat' },
+					{ rel:'alternate', hreflang:'uz', href:'http://chateg.com:1010/uz/chat' },
+					{ rel:'alternate', hreflang:'x-default', href:'http://chateg.com:1010/chat' },
 					{ hid: 'description', name: 'description', content: this.$t('Chat.Description') },
 					{ hid: 'keywords', name: 'keywords', content: this.$t('Chat.Keywords') }
 				]
@@ -89,7 +89,7 @@ export default {
 
 		this.$socket.emit('enter-chat', user)
 
-		this.$socket.on('searching-partner', (id) => {
+		this.$socket.on('searching-partner', () => {
 			this.$refs.chatContent.onSearchingPartner();
 		})
 
