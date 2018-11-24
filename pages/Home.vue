@@ -73,7 +73,7 @@ export default {
 	},
 	
 	async asyncData (context) {
-		let result = await context.app.$axios.get('http://127.0.0.1:1001/api/get_users');
+		let result = await context.app.$axios.get('/api/get_users');
 
 		return {
 			onlineUsers: result.data.onlineUsers,

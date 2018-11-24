@@ -28,7 +28,7 @@ export default {
 		let countryId = this.$store.getters.getCountryId;
 
 		if(countryId) {
-			this.$axios.get('api/get_males_and_females', {
+			this.$axios.get('/api/get_males_and_females', {
 				params: {
 					countryId: countryId
 				}
@@ -38,7 +38,7 @@ export default {
 			})
 			
 			setInterval(() => {
-				this.$axios.get('api/get_males_and_females', {
+				this.$axios.get('/api/get_males_and_females', {
 					params: {
 						countryId: countryId
 					}
