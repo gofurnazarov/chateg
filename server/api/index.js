@@ -1,21 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const request = require('request')
-// const getPostData = require('../middleware/getPostData')
 const help = require('../helper')
 
-router.post('/login', function (req, res, next) {
-		var data = "";
-		req.on('data', function (chunk) { data += chunk })
-		req.on('end', function () {
-			if (data) {
-				req.body = JSON.parse(data);
-			}
-			next();
-		})
-	}, function (req, res) {
-	
-		let user = null;
+router.post('/login', function (req, res) {
+	let user = null;
 
 	if (req.body.user) {
 		user = req.body.user;
@@ -29,7 +18,7 @@ router.post('/login', function (req, res, next) {
 		uri: "https://www.google.com/recaptcha/api/siteverify",
 		json: true,
 		form: {
-			secret: '6LcUpnwUAAAAAL016jWDGKMABtgtA0JCo0Vkzd09',
+			secret: '6Ld4RnQUAAAAAPdZaBbHdginQWteAohILLt1OXuT',
 			response: user.token
 		}
 	}

@@ -70,7 +70,7 @@
 							<vue-recaptcha 
 								ref="recaptcha"
 								type="invisible"
-								sitekey="6LcUpnwUAAAAAAWoR_6rw-_ADVcjn1Q5mqe507At"
+								sitekey="6Ld4RnQUAAAAAHMYhe_oY-6GMnh6F7nbsevkqpRv"
 								@verify="onVerify"
 								@expired="onExpired"
 							>

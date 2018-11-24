@@ -8,6 +8,7 @@ const host = process.env.HOST
 const port = process.env.PORT
 
 const io = require('socket.io').listen(server)
+io.origins('*:*')
 
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
