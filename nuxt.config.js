@@ -21,7 +21,7 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     ],
     link: [
-      // { rel: 'icon', type: 'image/x-icon', href: process.env.BASE_URL + '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: process.env.BASE_URL + '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Fredoka+One|Montserrat:200,400,500,700,800&amp;subset=cyrillic' }
     ]
   },
