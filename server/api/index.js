@@ -92,4 +92,8 @@ router.get('/get_males_and_females', function (req, res) {
 	res.status(201).json({ males: males, females: females })
 })
 
+router.get('/connection_status', function (req, res) {
+	res.status(201).json({ online: true })
+})
+
 module.exports = router

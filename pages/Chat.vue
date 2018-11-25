@@ -79,6 +79,12 @@ export default {
 			const id = this.$store.state.partnerId;
 
 			this.$socket.emit('user-stopped-typing', id)
+		},
+		checkConnection() {
+			this.$axios.$get('/api/connection_status').then().catch(e => {
+				this.$store.commit('removePartner');
+				this.$refs.chatContent.onDisconnect(this.$socket);
+			});
 		}
 	},
 
@@ -122,6 +128,10 @@ export default {
 			this.$refs.chatFooter.disableButtons();
 			this.$store.commit('removePartner')			
 		})
+
+		setInterval(() => {
+			this.checkConnection();
+		}, 10000)
 	},
 
 	components: {

@@ -54,6 +54,7 @@ const findRandomPartner = function(app, socket, countryId, id, partner) {
 
 			// Connect users
 			socket.emit('partner-found', randomPartnerId)
+			socket.partnerId = randomPartnerId;
 			socket.broadcast.to(randomPartnerId).emit('partner-found', id)
 
 			// Remove both users from searching users list after connected 

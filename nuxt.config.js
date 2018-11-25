@@ -29,7 +29,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: false,
+  loading: { color: '#fff', height: '3px' },
 
   /*
   ** Global CSS
@@ -74,37 +74,15 @@ module.exports = {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/router',
-    '@nuxtjs/sitemap',
     ['@nuxtjs/component-cache', {
       max: 10000,
       maxAge: 1000 * 60 * 60
     }],
     ['@nuxtjs/google-analytics', {
       id: 'UA-129371850-1'
-    }],
-    // '~/modules/express-routes.js'
+    }]
   ],
 
-  /*
-  ** Generates sitemap
-  */
-  // sitemap: {
-  //   path: '/sitemap.xml',
-  //   hostname: 'http://chateg.com',
-  //   cacheTime: 1000 * 60 * 15,
-  //   gzip: true,
-  //   generate: false, // Enable me when using nuxt generate
-  //   exclude: [
-  //     '/secret',
-  //     '/admin/**'
-  //   ],
-  //   routes: [
-  //     '/ru/login',
-  //     '/uz/login',
-  //     '/ru/chat',
-  //     '/uz/chat'
-  //   ]
-  // },
 
   /*
   ** Axios module configuration
