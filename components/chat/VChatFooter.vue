@@ -17,6 +17,7 @@
 					@keyup.enter.exact="sendMessage"
 					@keypress="startTyping"
 					ref="textarea"
+					tabindex="0"
 				/>
 			</div>
 			<div class="col-auto p-0">
