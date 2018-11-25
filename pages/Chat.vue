@@ -105,6 +105,10 @@ export default {
 			this.$refs.chatContent.onPartnerFound();
 			this.$refs.chatFooter.enableButtons();
 			this.$store.commit('setPartnerId', id)
+
+			this.connectionChecker = setInterval(() => {
+				this.checkConnection();
+			}, 10000)
 		})
 
 		this.$socket.on('partner-zero', () => {
@@ -130,11 +134,6 @@ export default {
 			this.$refs.chatFooter.disableButtons();
 			this.$store.commit('removePartner')			
 		})
-
-		this.connectionChecker = setInterval(() => {
-			this.checkConnection();
-		}, 10000)
-
 
 	},
 
