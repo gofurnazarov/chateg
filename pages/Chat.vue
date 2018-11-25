@@ -52,7 +52,8 @@ export default {
 		return {
 			disconnectButton: true,
 			sendButton: true,
-			disconnectedScreen: false
+			disconnectedScreen: false,
+			connectionChecker: undefined
 		}
 	},
 
@@ -82,6 +83,7 @@ export default {
 		},
 		checkConnection() {
 			this.$axios.$get('/api/connection_status').then().catch(e => {
+				clearInterval(this.connectionChecker);
 				this.$store.commit('removePartner');
 				this.$refs.chatContent.onDisconnect(this.$socket);
 			});
@@ -129,9 +131,11 @@ export default {
 			this.$store.commit('removePartner')			
 		})
 
-		setInterval(() => {
+		this.connectionChecker = setInterval(() => {
 			this.checkConnection();
 		}, 10000)
+
+
 	},
 
 	components: {

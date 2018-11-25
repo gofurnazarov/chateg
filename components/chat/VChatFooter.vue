@@ -15,7 +15,7 @@
 					class="textarea" 
 					:placeholder="$t('Chat.TypeMessage')"
 					@keyup.enter.exact="sendMessage"
-					@keypress="startTyping"
+					@keyup="startTyping"
 					ref="textarea"
 					tabindex="0"
 				/>
