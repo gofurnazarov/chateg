@@ -3,40 +3,40 @@ const router = express.Router()
 const request = require('request')
 const help = require('../helper')
 
-router.post('/login', function (req, res) {
-	let user = null;
+// router.post('/login', function (req, res) {
+// 	let user = null;
 
-	if (req.body.user) {
-		user = req.body.user;
-	}
+// 	if (req.body.user) {
+// 		user = req.body.user;
+// 	}
 
-	if (!user.sex || !user.partner || !user.country || !user.token) {
-		return res.status(400).json({ message: "Something went wrong!" });
-	}
+// 	if (!user.sex || !user.partner || !user.country || !user.token) {
+// 		return res.status(400).json({ message: "Something went wrong!" });
+// 	}
 
-	const verifyCaptchaOptions = {
-		uri: "https://www.google.com/recaptcha/api/siteverify",
-		json: true,
-		form: {
-			secret: '6Ld4RnQUAAAAAPdZaBbHdginQWteAohILLt1OXuT',
-			response: user.token
-		}
-	}
+// 	const verifyCaptchaOptions = {
+// 		uri: "https://www.google.com/recaptcha/api/siteverify",
+// 		json: true,
+// 		form: {
+// 			secret: '6Ld4RnQUAAAAAPdZaBbHdginQWteAohILLt1OXuT',
+// 			response: user.token
+// 		}
+// 	}
 
-	request.post(verifyCaptchaOptions, function (err, response, body) {
-		if (err) {
-			return res.status(500).json({ message: "oops, something went wrong on our side" });
-		}
+// 	request.post(verifyCaptchaOptions, function (err, response, body) {
+// 		if (err) {
+// 			return res.status(500).json({ message: "oops, something went wrong on our side" });
+// 		}
 
-		if (!body.success) {
-			return res.status(500).json({ message: body["error-codes"].join(".") });
-		}
+// 		if (!body.success) {
+// 			return res.status(500).json({ message: body["error-codes"].join(".") });
+// 		}
 
-		//Save the user to the database. At this point they have been verified.
-		res.status(201).json({ success: true, user: user });
-	});
+// 		//Save the user to the database. At this point they have been verified.
+// 		res.status(201).json({ success: true, user: user });
+// 	});
 
-})
+// })
 
 router.get('/get_users', function (req, res) {
 	let numberOfOnlineUsers = 0;

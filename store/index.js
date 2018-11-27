@@ -44,18 +44,22 @@ const createStore = () => {
 				}
 			},
 			saveUser(storeContext, user) {
-				axios.post(process.env.baseUrl + '/api/login', {
-					user: user
-				}).then((res) => {
-					if (res.data.success) {
-						storeContext.commit('saveUser', user)
+				// axios.post(process.env.baseUrl + '/api/login', {
+				// 	user: user
+				// }).then((res) => {
+				// 	if (res.data.success) {
+				// 		storeContext.commit('saveUser', user)
 						
-						const url = process.env.baseUrl + '/' + storeContext.state.locale + '/chat';
-						window.location.replace(url)
-					}
-				}).catch((err) => {
-					console.log(err)
-				})
+				// 		const url = process.env.baseUrl + '/' + storeContext.state.locale + '/chat';
+				// 		window.location.replace(url)
+				// 	}
+				// }).catch((err) => {
+				// 	console.log(err)
+				// })
+
+				storeContext.commit('saveUser', user)
+				const url = process.env.baseUrl + '/' + storeContext.state.locale + '/chat';
+				window.location.replace(url)
 			}
 		},
 		
