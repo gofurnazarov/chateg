@@ -67,7 +67,7 @@
 							</div>
 						</v-form-group>
 						<div class="form-group google-captcha">
-							<vue-recaptcha 
+							<!-- <vue-recaptcha 
 								ref="recaptcha"
 								type="invisible"
 								sitekey="6Ld4RnQUAAAAAHMYhe_oY-6GMnh6F7nbsevkqpRv"
@@ -75,7 +75,7 @@
 								@expired="onExpired"
 							>
 								<button class="d-none">recaptcha</button>
-							</vue-recaptcha>
+							</vue-recaptcha> -->
 						</div>
 						<v-form-group
 							:label-text="$t('Login.Country')"
@@ -119,7 +119,7 @@ import PCheck from 'pretty-checkbox-vue/check'
 import PRadio from 'pretty-checkbox-vue/radio'
 import VHeader from '~/components/VHeader'
 import VFormGroup from '~/components/VFormGroup'
-import VueRecaptcha from 'vue-recaptcha'
+// import VueRecaptcha from 'vue-recaptcha'
 
 export default {
 	name: 'Login',
@@ -134,9 +134,9 @@ export default {
 				{ hid: 'description', name: 'description', content: this.$t('Login.Description') },
 				{ hid: 'keywords', name: 'keywords', content: this.$t('Login.Keywords') }
 			],
-			script: [
-				{ src: 'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit' }
-			]
+			// script: [
+			// 	{ src: 'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit' }
+			// ]
 		}
 	},
 	
@@ -228,7 +228,7 @@ export default {
 	components: {
 		VHeader,
 		VFormGroup,
-		VueRecaptcha,
+		// VueRecaptcha,
 		PCheck,
 		PRadio
 	}
