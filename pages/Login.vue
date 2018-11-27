@@ -170,23 +170,26 @@ export default {
 			if(this.user.country == null) {
 				this.countryEmpty = true;
 			} else {
-				this.$refs.recaptcha.execute()
-			}
-		},
-		onVerify(token) {
-			this.$refs.recaptcha.reset();
-			
-			if(this.user.country == null) {
-				this.countryEmpty = true;
-			} else {
+				// this.$refs.recaptcha.execute()
 				this.user.token = token;
 
 				this.$store.dispatch('saveUser', this.user)
 			}
 		},
-		onExpired() {
-			this.$refs.recaptcha.reset();
-		}
+		// onVerify(token) {
+		// 	this.$refs.recaptcha.reset();
+			
+		// 	if(this.user.country == null) {
+		// 		this.countryEmpty = true;
+		// 	} else {
+		// 		this.user.token = token;
+
+		// 		this.$store.dispatch('saveUser', this.user)
+		// 	}
+		// },
+		// onExpired() {
+		// 	this.$refs.recaptcha.reset();
+		// }
 	},
 
 	async beforeMount() {
