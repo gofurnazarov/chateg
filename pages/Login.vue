@@ -171,8 +171,6 @@ export default {
 				this.countryEmpty = true;
 			} else {
 				// this.$refs.recaptcha.execute()
-				this.user.token = token;
-
 				this.$store.dispatch('saveUser', this.user)
 			}
 		},
